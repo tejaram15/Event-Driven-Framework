@@ -1,0 +1,190 @@
+{
+  "me": [
+    {
+      "_uid_": "0xad973bc4647cdc4f",
+      "associates": [
+        {
+          "_uid_": "0xabd1e9d85cd5a7e5",
+          "paid": 4288684.8,
+          "percent_paid": 14.78,
+          "start_date": "2006-06-01"
+        },
+        {
+          "_uid_": "0xd15ad286a995a4e2",
+          "paid": 24263713.28,
+          "percent_paid": 30.57,
+          "start_date": "2006-07-01"
+        },
+        {
+          "_uid_": "0x6cb49d1d0a135b62",
+          "paid": 24593968.64,
+          "percent_paid": 45.5,
+          "start_date": "2006-07-03"
+        },
+        {
+          "_uid_": "0x5764cd07872bf8bc",
+          "paid": 41296168.96,
+          "percent_paid": 46.83,
+          "start_date": "2006-07-09"
+        },
+        {
+          "_uid_": "0x849b31fa8140f031",
+          "paid": 61657625.6,
+          "percent_paid": 99,
+          "start_date": "2006-07-12"
+        },
+        {
+          "_uid_": "0x1bfe005bdd9975cf",
+          "paid": 11963232,
+          "percent_paid": 16.74,
+          "start_date": "2006-07-13"
+        },
+        {
+          "_uid_": "0x7e641a367ddc57d6",
+          "paid": 21189080.32,
+          "percent_paid": 73.49,
+          "start_date": "2006-07-18"
+        },
+        {
+          "_uid_": "0xc6649a0b90af6c4",
+          "paid": 82157680.64,
+          "percent_paid": 88.77,
+          "start_date": "2006-07-21"
+        },
+        {
+          "_uid_": "0x98d70abd039ce6d6",
+          "paid": 14733582.08,
+          "percent_paid": 81.23,
+          "start_date": "2006-07-28"
+        },
+        {
+          "_uid_": "0xe2357e20817fd4b8",
+          "paid": 28716631.04,
+          "percent_paid": 44.24,
+          "start_date": "2006-08-04"
+        },
+        {
+          "_uid_": "0xfc14f8569de035ac",
+          "paid": 37220500.48,
+          "percent_paid": 77.49,
+          "start_date": "2006-08-06"
+        },
+        {
+          "_uid_": "0x77f3e9891464309f",
+          "paid": 29860602.88,
+          "percent_paid": 67.74,
+          "start_date": "2006-08-19"
+        },
+        {
+          "_uid_": "0x631f2e644be4dff2",
+          "paid": 5973633.28,
+          "percent_paid": 49.91,
+          "start_date": "2006-08-19"
+        },
+        {
+          "_uid_": "0x402e5af69988e259",
+          "paid": 958327.2,
+          "percent_paid": 65.57,
+          "start_date": "2006-08-19"
+        },
+        {
+          "_uid_": "0xa78bc97ac61850cd",
+          "paid": 66084280.32,
+          "percent_paid": 88.9,
+          "start_date": "2006-08-20"
+        },
+        {
+          "_uid_": "0xb7ba92f18530a326",
+          "paid": 19659626.24,
+          "percent_paid": 49.01,
+          "start_date": "2006-08-24"
+        },
+        {
+          "_uid_": "0x75dbe4e90a46e071",
+          "paid": 39517373.44,
+          "percent_paid": 91.49,
+          "start_date": "2006-08-27"
+        },
+        {
+          "_uid_": "0x5afb766d2597346f",
+          "paid": 1638564.64,
+          "percent_paid": 9.46,
+          "start_date": "2006-09-01"
+        },
+        {
+          "_uid_": "0x4b0bd90beaab20b9",
+          "paid": 4173385.28,
+          "percent_paid": 6.52,
+          "start_date": "2006-09-02"
+        },
+        {
+          "_uid_": "0x30eb3355947fbfcf",
+          "paid": 19641408,
+          "percent_paid": 20.2,
+          "start_date": "2006-09-03"
+        },
+        {
+          "_uid_": "0x9ea8180f74dad903",
+          "paid": 87157872.64,
+          "percent_paid": 90.76,
+          "start_date": "2006-09-20"
+        },
+        {
+          "_uid_": "0xfbcea9f3af32308f",
+          "paid": 21524203.52,
+          "percent_paid": 37.12,
+          "start_date": "2006-09-21"
+        },
+        {
+          "_uid_": "0x10b19f7025bf931d",
+          "paid": 2922308.16,
+          "percent_paid": 9.99,
+          "start_date": "2006-09-21"
+        },
+        {
+          "_uid_": "0x71c5e0c6ea31e9b4",
+          "paid": 16779502.08,
+          "percent_paid": 77.45,
+          "start_date": "2006-09-27"
+        },
+        {
+          "_uid_": "0xe98a433385e50fc0",
+          "paid": 6813674.24,
+          "percent_paid": 55.95,
+          "start_date": "2006-09-29"
+        },
+        {
+          "_uid_": "0xd4667d6fad8c7a01",
+          "paid": 97692887.04,
+          "percent_paid": 97.79,
+          "start_date": "2006-10-19"
+        },
+        {
+          "_uid_": "0x530e78c8dc6689c3",
+          "paid": 87930214.4,
+          "percent_paid": 95.95,
+          "start_date": "2006-10-20"
+        },
+        {
+          "_uid_": "0x204b9e71909a243",
+          "paid": 467617.52,
+          "percent_paid": 55.14,
+          "start_date": "2006-10-26"
+        },
+        {
+          "_uid_": "0x59ef658ca2e1387b",
+          "paid": 10922515.2,
+          "percent_paid": 86.24,
+          "start_date": "2006-10-28"
+        }
+      ],
+      "name": "Vijaya Bank"
+    }
+  ],
+  "server_latency": {
+    "json": "2ms",
+    "parsing": "66µs",
+    "processing": "13ms",
+    "total": "14ms"
+  }
+}

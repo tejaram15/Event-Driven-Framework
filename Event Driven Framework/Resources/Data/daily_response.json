@@ -1,0 +1,21 @@
+﻿{
+  "me": [
+    {
+      "_uid_": "0xad973bc4647cdc4f",
+      "associates": [
+        {
+          "_uid_": "0xabd1e9d85cd5a7e5",
+          "paid": 4288684.8,
+          "percent_paid": 14.78
+        }
+      ],
+      "name": "Vijaya Bank"
+    }
+  ],
+  "server_latency": {
+    "json": "496µs",
+    "parsing": "82µs",
+    "processing": "73ms",
+    "total": "74ms"
+  }
+}

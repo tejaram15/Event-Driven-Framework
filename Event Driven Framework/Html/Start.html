@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="icon" href="/Resources/Images/favicon.ico" type="image/ico">
+        <title>Dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/1da1654c7c.js"></script>
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+        <link rel="stylesheet" href="/Css/style.css">
+        <script src="/JS/liquidFillGauge.js" language="JavaScript"></script>
+    </head>
+    <body>
+        <!--Topnavbar-->
+        <nav class="navbar navclass">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> 
+                  </button>                    
+                    <a href="#" class="navbar-brand" style="padding:0px;margin-left:0px;margin-right:0px;">
+                        <img src="/Resources/Images/logo%20(1).png" style="height:100%;margin-left:0px;">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#" class="nav-color">Home</a></li>
+                        <li><a href="#" class="nav-color">Daily</a></li>
+                        <li><a href="#" class="nav-color">Weekly</a></li>
+                        <li><a href="#" class="nav-color">Monthly</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--Topnavbar-->
+        <!--Main Content-->
+        <div class="container">
+            <!-- Chart area 1 -->
+            <div class="row">
+                <div class="col col-md-3" style="position:relative;overflow-x:scroll;text-align:center;color:orange;border-style:solid;padding-top:1%;border-radius:5px;">
+                    Percentage Paid
+                    <svg id="fillgauge1" viewBox="-10 -5 280 230" style="float:left;"></svg>
+                    <script src="/JS/Gauge.js"></script>
+                </div>                
+            </div>
+        </div>
+        <!--Main Content-->
+        <div class="container">
+            <div class="row graph" style="margin-top:2%;border-style:solid;border-color:orange;border-width:4px;border-radius:5px;">
+                <nav class="navbar navclass">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span> 
+                          </button>                    
+                        </div>
+                        <div class="collapse navbar-collapse" id="myNavbar">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#tab1" class="nav-color" data-toggle="tab"><i class="fa fa-line-chart"></i>  Graph</a></li>
+                                <li><a href="#tab2" class="nav-color" data-toggle="tab"><i class="fa fa-code-fork"></i>  Query</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <!-- tab content -->
+                <div class="tab-content">
+                    <div class="tab-pane active graph" id="tab1">
+                        <script src="/JS/Complete.js"></script>
+                    </div>
+                    <div class="tab-pane" id="tab2" style="background-color: #eee !important;min-height:100% !important;">
+                        <pre>
+                            <code>
+        {
+            me(id: xxxxxxxxxx){
+                name
+                associates(orderasc:start_date) @filter(ge(start_date,"2006-06-01") and le(start_date,"2012-06-01")){
+                    name
+                    _uid_
+                    start_date
+                    percent_paid
+                    paid
+                }
+            }
+        }
+                            </code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main Content -->
+        <!-- Footer -->
+        <div class="footer" style="background-color:#eeeeee;bottom:0px;left:0px;right:0px;margin-bottom:0px;">
+            <div class="container" style="text-align:center;padding:1%;">
+                <p style="color:orange;font-size:20px;">Powered By @BBSSL</p>
+            </div>
+        </div>
+        <!-- Footer -->
+        <script src="/JS/Yearly.js"></script>
+    </body>
+</html>

@@ -1,0 +1,60 @@
+{
+  "iphone": [
+    {
+      "_uid_": "0x13b706644c456cda",
+      "hash": [
+        {
+          "_uid_": "0x629401ea52f7ad5b",
+          "name": "iPhone6"
+        },
+        {
+          "_uid_": "0x84710a3674feae03",
+          "name": "photography"
+        },
+        {
+          "_uid_": "0x8606139a10238fcd",
+          "name": "dance"
+        },
+        {
+          "_uid_": "0x86db4d5c4dc2ab35",
+          "name": "tablet"
+        },
+        {
+          "_uid_": "0x8a4b76a3d6b3eba8",
+          "name": "apple"
+        },
+        {
+          "_uid_": "0x9f8e4d51238418af",
+          "name": "ios"
+        },
+        {
+          "_uid_": "0xaa63e36a64ba25db",
+          "name": "AppleNews"
+        },
+        {
+          "_uid_": "0xb4ccff0f9e8dfab6",
+          "name": "Apps"
+        },
+        {
+          "_uid_": "0xbd7ff76406aab143",
+          "name": "iPad"
+        },
+        {
+          "_uid_": "0xd3924bb00dc5955f",
+          "name": "Apple"
+        },
+        {
+          "_uid_": "0xda77d4195e66680d",
+          "name": "youthvote"
+        }
+      ],
+      "name": "iphone"
+    }
+  ],
+  "server_latency": {
+    "json": "420µs",
+    "parsing": "23µs",
+    "processing": "418µs",
+    "total": "866µs"
+  }
+}

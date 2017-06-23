@@ -1,0 +1,120 @@
+﻿{
+  "main_branch": [
+    {
+      "_uid_": "0xffbfa4b874d1fe89",
+      "associates": [
+        {
+          "_uid_": "0x52eb1a278634006",
+          "in_indicator": "D",
+          "in_type": "NORMAL",
+          "interest_rate": 13
+        },
+        {
+          "_uid_": "0x231042f9d75e1020",
+          "in_indicator": "D",
+          "in_type": "NORMAL",
+          "interest_rate": 13
+        },
+        {
+          "_uid_": "0x460a9368963b963f",
+          "in_indicator": "D",
+          "in_type": "NORMAL",
+          "interest_rate": 13
+        },
+        {
+          "_uid_": "0x4708970eb88631f6",
+          "in_indicator": "D",
+          "in_type": "NORMAL",
+          "interest_rate": 13
+        },
+        {
+          "_uid_": "0x5a7e3ab3809e27bd",
+          "in_indicator": "D",
+          "in_type": "NORMAL",
+          "interest_rate": 13
+        },
+        {
+          "_uid_": "0x5e3252e28c14426f",
+          "in_indicator": "D",
+          "in_type": "NORMAL",
+          "interest_rate": 13
+        },
+        {
+          "_uid_": "0x67f12148e539470b",
+          "in_indicator": "D",
+          "in_type": "NORMAL",
+          "interest_rate": 13
+        },
+        {
+          "_uid_": "0x73660834091f05d7",
+          "in_indicator": "D",
+          "in_type": "NORMAL",
+          "interest_rate": 13
+        },
+        {
+          "_uid_": "0x7ea70674e4587bc4",
+          "in_indicator": "D",
+          "in_type": "ADDITIONAL",
+          "interest_rate": 0
+        },
+        {
+          "_uid_": "0x94a9c18a55a32670",
+          "in_indicator": "D",
+          "in_type": "PENAL",
+          "interest_rate": 2
+        },
+        {
+          "_uid_": "0x9e5bc8068ebd9386",
+          "in_indicator": "D",
+          "in_type": "QIS",
+          "interest_rate": 0
+        },
+        {
+          "_uid_": "0xb9f8e30652072219",
+          "in_indicator": "D",
+          "in_type": "NORMAL",
+          "interest_rate": 13
+        },
+        {
+          "_uid_": "0xbc845eeb6a86ca24",
+          "in_indicator": "D",
+          "in_type": "PENAL",
+          "interest_rate": 0
+        },
+        {
+          "_uid_": "0xcf6e8693b603d763",
+          "in_indicator": "D",
+          "in_type": "NORMAL",
+          "interest_rate": 13
+        },
+        {
+          "_uid_": "0xe28dda4e682b64a1",
+          "in_indicator": "D",
+          "in_type": "NORMAL",
+          "interest_rate": 13
+        },
+        {
+          "_uid_": "0xecd78a224fc10e97",
+          "in_indicator": "D",
+          "in_type": "NORMAL",
+          "interest_rate": 13
+        },
+        {
+          "_uid_": "0xfe31f505a107f838",
+          "in_indicator": "D",
+          "in_type": "ADDITIONAL",
+          "interest_rate": 0
+        }
+      ],
+      "name": "Vijaya Bank"
+    }
+  ],
+  "server_latency": {
+    "json": "1ms",
+    "parsing": "59µs",
+    "processing": "3ms",
+    "total": "4ms"
+  }
+}
+
+
