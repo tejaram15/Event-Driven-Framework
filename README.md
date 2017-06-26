@@ -7,8 +7,11 @@
 4. [Docker](https://www.docker.com/community-edition). Download. (We wont be using docker.)
 
 ## Initial Background \services to run:-
-1. Zookeeper instance for Kafka. Command:-(For linux and mac)
+1. Zookeeper instance for Kafka. 
+
+    Command:-(For linux and mac)
     > bin/zookeeper-server-start.sh config/zookeeper.properties
+    
     (For Windows)
     > bin\windows\zookeeper-server-start.bat config\zookeeper.properties
 2. Kafka Broker instance. Command:- (For Linux and Mac)
