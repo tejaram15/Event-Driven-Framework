@@ -1,11 +1,11 @@
 {
   "name": "event_docker_framework",
-  "version": "0.1",
+  "version": "1.0.0",
   "description": "Event Driven Framework on Docker",
   "author": "tejaram15 <raghuramkarra15@gmail.com>",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node HTTP_SERVER.js"
   },
   "dependencies": {
     "express": "^4.13.3"
