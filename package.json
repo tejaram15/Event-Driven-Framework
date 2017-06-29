@@ -5,7 +5,7 @@
   "author": "tejaram15 <raghuramkarra15@gmail.com>",
   "main": "server.js",
   "scripts": {
-    "start": "node HTTP_SERVER.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.13.3"
