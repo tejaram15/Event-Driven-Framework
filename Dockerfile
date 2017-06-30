@@ -1,5 +1,7 @@
 # Import nodejs boron version
 FROM node:boron
+# Create a new directory
+RUN mkdir -p /usr/src/Event Driven Framework/
 # Change Working Directory
 WORKDIR /usr/src/Event Driven Framework/
 # Install app dependencies
