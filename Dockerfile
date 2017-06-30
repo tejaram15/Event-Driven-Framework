@@ -1,15 +1,14 @@
+#import nodejs boron version
 FROM node:boron
+#Setup Working Directory
+MKDIR ~/app
+#Copy contents to working directory
+COPY . ~/app
+#Change Working Directory
+WORKDIR ~/app
+#install Dependicies
+RUN curl https://get.dgraph.io -sSf | bash
 
-# Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-
-# Install app dependencies
-COPY package.json /usr/src/app/
-RUN npm install
-
-# Bundle app source
-COPY . /usr/src/app
-
-EXPOSE 8080
-CMD [ "npm", "start" ]
+#Run the final Related Files
+RUN node HTTP_SERVER.js
+RUN echo"Open your webpage at https://localhost:8080/Html/Start.html"
