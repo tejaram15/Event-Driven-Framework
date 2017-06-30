@@ -3,7 +3,7 @@ FROM node:boron
 #Copy contents to working directory
 COPY . /usr/src
 #Change Working Directory
-WORKDIR /usr/src
+WORKDIR /usr/src/Event Driven Framework/
 #install Dependicies
 RUN curl https://get.dgraph.io -sSf | bash
 
