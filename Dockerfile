@@ -1,11 +1,9 @@
 #import nodejs boron version
 FROM node:boron
-#Setup Working Directory
-MKDIR ~/app
 #Copy contents to working directory
-COPY . ~/app
+COPY . /usr/src
 #Change Working Directory
-WORKDIR ~/app
+WORKDIR /usr/src
 #install Dependicies
 RUN curl https://get.dgraph.io -sSf | bash
 
