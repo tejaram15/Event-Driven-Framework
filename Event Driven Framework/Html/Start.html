@@ -4,15 +4,36 @@
         <link rel="icon" href="/Resources/Images/favicon.ico" type="image/ico">
         <title>Dashboard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8"> 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://use.fontawesome.com/1da1654c7c.js"></script>
         <script src="http://d3js.org/d3.v3.min.js"></script>
         <link rel="stylesheet" href="/Css/style.css">
+        <script>
+            var current = null;
+            function load(){
+                var messagedivid = "message";
+                if(sessionStorage.length != 0){
+                    document.getElementById("show_user").innerHTML = JSON.parse(sessionStorage.getItem('username'));
+                    var div = document.getElementById(messagedivid),id = messagedivid.replace("message", "response");
+                    if(current == null){
+                        div.style.display = 'none';
+                        div = document.getElementById(id);
+                        div.style.display = 'inline';
+                        current = "Logged-in";
+                    }
+                }
+                else{
+                    var div = document.getElementById(messagedivid);
+                    div.style.display = 'inline';
+                }
+            }                        
+        </script>
         <script src="/JS/liquidFillGauge.js" language="JavaScript"></script>
     </head>
-    <body>
+    <body onload="load()">
         <!--Topnavbar-->
         <nav class="navbar navclass">
             <div class="container-fluid">
@@ -33,10 +54,80 @@
                         <li><a href="#" class="nav-color">Weekly</a></li>
                         <li><a href="#" class="nav-color">Monthly</a></li>
                     </ul>
+                    <span id="message" style="display:inline-block">
+                        <ul class="nav navbar-nav navbar-right">
+                          <li><a href="#" data-toggle="modal" data-target="#signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                          <li><a href="#" data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        </ul>
+                    </span>
+                    <span id="response" style="display:none;">
+                        <ul class="nav navbar-nav navbar-right">
+                          <li><a href="#"><span class="glyphicon glyphicon-user"></span><span id="show_user"></span></a></li>
+                          <li><a href="#" onclick="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        </ul>
+                    </span>            
                 </div>
             </div>
         </nav>
         <!--Topnavbar-->
+        <!-- Signup Modal -->
+        <div id="signup" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header" style="background-color:orange;border-radius:5px;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Sign Up</h4>
+              </div>
+              <div class="modal-body">
+              <form class="animate" method="post" action="javascript:signupAndRedirect();">
+                  <label><b>Username</b></label>
+                  <input type="text" placeholder="Enter Username" id="username" required style="margin-left:9%;width:75%;">
+                  <br><br>
+                  <label><b>Password</b></label>
+                  <input type="password" placeholder="Enter Password" id="psw" required required style="margin-left:9%;width:75%;">
+                  <br><br>
+                  <label><b>Repeat Password</b></label>
+                  <input type="password" placeholder="Repeat Password" id="psw-repeat" required style="width:75%;">
+                  <br><br>
+                  <div class="clearfix">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" style="width:20%;">Cancel</button>
+                    <button type="submit" class="btn btn-success" style="width:20%;">Sign Up</button>
+                </div>
+              </form>                  
+              </div>
+            </div>
+          </div>
+        </div>        
+        <!-- Signup Modal -->
+        <!-- Login Modal -->
+        <div id="login" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header" style="background-color:orange;border-radius:5px;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Login</h4>
+              </div>
+              <div class="modal-body">
+              <form class="animate" method="post" action="javascript:loginAndRedirect();">
+                  <label><b>Username</b></label>
+                  <input type="text" placeholder="Enter Username" id="username1" required style="margin-left:9%;width:75%;">
+                  <br><br>
+                  <label><b>Password</b></label>
+                  <input type="password" placeholder="Enter Password" id="psw1" required required style="margin-left:9%;width:75%;">
+                  <br><br>
+                  <input type="checkbox" checked="checked"> Remember me
+                  <br><br>
+                  <div class="clearfix">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" style="width:20%;">Cancel</button>
+                    <button type="submit" class="btn btn-success" style="width:20%;">Login</button>
+                </div>
+              </form>                  
+              </div>
+            </div>
+          </div>
+        </div>        
+        <!-- Login Modal -->
         <!--Main Content-->
         <div class="container">
             <!-- Chart area 1 -->
@@ -70,7 +161,7 @@
                 </nav>
                 <!-- tab content -->
                 <div class="tab-content">
-                    <div class="tab-pane active graph" id="tab1">
+                    <div class="tab-pane active graph" id="tab1" style="position:relative;overflow-x:scroll;">
                         <script src="/JS/Complete.js"></script>
                     </div>
                     <div class="tab-pane" id="tab2" style="background-color: #eee !important;min-height:100% !important;">
@@ -96,12 +187,70 @@
         </div>
         <!-- Main Content -->
         <!-- Footer -->
-        <div class="footer" style="background-color:#eeeeee;bottom:0px;left:0px;right:0px;margin-bottom:0px;">
+        <div class="footer" style="background-color:#eeeeee;bottom:0px;left:0px;right:0px;margin-bottom:0px;margin-top:1%;">
             <div class="container" style="text-align:center;padding:1%;">
                 <p style="color:orange;font-size:20px;">Powered By @BBSSL</p>
             </div>
         </div>
         <!-- Footer -->
+        <script type="text/javascript">
+            function logout(){
+                sessionStorage.clear();
+                location.reload();  
+            }
+            function signupAndRedirect(){
+                var username = document.getElementById('username').value;
+                var pass = document.getElementById('psw').value;
+                var pass_repeat = document.getElementById('psw-repeat').value;
+                if(pass != pass_repeat){
+                    alert("Passwords Dont Match");
+                }
+                else {
+                    var str = "signup," + username + "," + pass + "," + pass_repeat; 
+                    var http = new XMLHttpRequest();
+                    var url = 'http://localhost:8080/';
+                    http.open('POST', url, true);
+                    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    var myJsonString = JSON.stringify(str);
+                    http.onreadystatechange = function() {
+                        if (http.readyState == 4 && http.status == 200) {
+                            console.log(http.responseText);
+                        }
+                    }                
+                    setTimeout( function() {
+                      http.send(myJsonString);
+                    }, 1000);
+                }
+                $('#signup').modal('hide');
+                alert("Successfully Signed up");
+            }
+            function loginAndRedirect(){
+                var username = document.getElementById('username1').value;
+                var pass = document.getElementById('psw1').value;
+                var str = "login," + username + "," + pass; 
+                var http = new XMLHttpRequest();
+                var url = 'http://localhost:8080/';
+                http.open('POST', url, true);
+                http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                var myJsonString = JSON.stringify(str);
+                http.onreadystatechange = function() {
+                    if (http.readyState == 4 && http.status == 200) {
+                        console.log(http.responseText);
+                        var username = document.getElementById('username1').value;
+                        sessionStorage.setItem('username',JSON.stringify(username));
+                        console.log(JSON.parse(sessionStorage.getItem('username')));
+                        load();
+                    }
+                    else{
+                        alert("Wrong Login id or Password");
+                    }
+                }                
+                setTimeout( function() {
+                  http.send(myJsonString);
+                }, 1000);
+                $('#login').modal('hide');
+            }
+        </script>
         <script src="/JS/Yearly.js"></script>
     </body>
 </html>
