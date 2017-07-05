@@ -33,30 +33,30 @@
 It is needed to create a topic for communication in the Publisher and Subscriber Model. 
 
     Command:- (Linux and Mac)
-    > bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic topic-name
+     bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic topic-name
     
     For Windows
-    > bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic topic-name
+     bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic topic-name
 
 ## Running Apache Kafka-Producer and Kafka-Consumer:-
 
 Now that all the above services are running run the program in a terminal **kafka_producer.java** file in the **_kafka-files_** folder.
 
     Command to Execute the file:-
-    > javac -cp "/path/to/kafka/kafka_2.11-0.9.0.0/lib/*" kafka_producer.java
+     javac -cp "/path/to/kafka/kafka_2.11-0.9.0.0/lib/*" kafka_producer.java
 
     Command to run the file:-
-    > java -cp "/path/to/kafka/kafka_2.11-0.9.0.0/lib/*":. kafka_producer
+     java -cp "/path/to/kafka/kafka_2.11-0.9.0.0/lib/*":. kafka_producer
     
 The above command should display the hashtags on the terminal.
 
 Now in a new terminal run the **kafka_consumer.java** file in the **_kafka-files_** folder.
 
     Command to Execute the file:-
-    > javac -cp "/path/to/kafka/kafka_2.11-0.9.0.0/lib/*" kafka_consumer.java
+     javac -cp "/path/to/kafka/kafka_2.11-0.9.0.0/lib/*" kafka_consumer.java
 
     Command to run the file:-
-    > java -cp "/path/to/kafka/kafka_2.11-0.9.0.0/lib/*":. kafka_consumer
+     java -cp "/path/to/kafka/kafka_2.11-0.9.0.0/lib/*":. kafka_consumer
 
 After running the Consumer You will get a string on the terminal which will be inserted into the Dgraph localhost client.
 
