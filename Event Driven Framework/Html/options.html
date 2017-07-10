@@ -84,13 +84,11 @@
                         theme.onclick = function () {
                             if(theme.innerHTML == "Blue Theme"){
                                 theme.innerHTML = "Orange Theme";
-                                sessionStorage.clear();
                                 sessionStorage.setItem('theme','Orange Theme');
                                 document.getElementById('theme_css').href = '/Css/blue.css';
                             }
                             else{
                                 theme.innerHTML = "Blue Theme";
-                                sessionStorage.clear();
                                 sessionStorage.setItem('theme','Blue Theme');
                                 document.getElementById('theme_css').href = '/Css/style.css';
                             }
@@ -98,14 +96,14 @@
                     </script>                    
                     <span id="message" style="display:inline-block">
                         <ul class="nav navbar-nav navbar-right">
-                          <li><a href="#" data-toggle="modal" data-target="#signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                          <li><a href="#" data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                          <li><a href="#" data-toggle="modal" data-target="#signup" class="nocol"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                          <li><a href="#" data-toggle="modal" data-target="#login" class="nocol"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                         </ul>
                     </span>
                     <span id="response" style="display:none;">
                         <ul class="nav navbar-nav navbar-right">
-                          <li><a href="#"><span class="glyphicon glyphicon-user"></span><span id="show_user"></span></a></li>
-                          <li><a href="#" onclick="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                          <li><a href="#" class="nocol"><span class="glyphicon glyphicon-user"></span><span id="show_user"></span></a></li>
+                          <li><a href="#" onclick="logout()" class="nocol"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                         </ul>
                     </span>            
                 </div>
