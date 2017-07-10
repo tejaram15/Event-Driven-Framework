@@ -27,7 +27,7 @@ var line = d3.svg.line()
     .x(function(d) { return x(d["start_date"]); })
     .y(function(d) { return y(d["paid"]); });
 
-d3.json("/Resources/Data/Yearly_response.json",function(error,data) {
+d3.json("/Resources/Data/send.json",function(error,data) {
 
 data = data["me"][0]["associates"]; 
 data.forEach(function(d){

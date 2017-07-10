@@ -9,6 +9,7 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Calendar;
 
 public class TestCases {
     public static void main(String[] args) throws FileNotFoundException {
@@ -26,6 +27,42 @@ public class TestCases {
         }
         String fileWrite = "";//Format of string is
         //ID,StartDate,EndDate,No of Days,Rate,Principal,Paid,Percentage paid
+        Calendar start = Calendar.getInstance();
+        start.setTime(StartDate);
+        Calendar end = Calendar.getInstance();
+        end.setTime(EndDate);        
+        int i = 1;
+        for (Date date = start.getTime(); start.before(end); start.add(Calendar.DATE, 1), date = start.getTime()) {
+            // Do your job here with `date`.
+            fileWrite += Integer.toString(i++);
+            fileWrite += ",";
+
+            fileWrite += ft.format(date);
+            fileWrite += ",";
+
+            int principal = ThreadLocalRandom.current().nextInt(10000, 101010101 + 1);
+            fileWrite += Integer.toString(principal);
+            fileWrite += ",";
+            
+            Random rand = new Random();
+            float percentage = (float) (rand.nextFloat() * (100.0));
+            percentage = (float) ((float) Math.round(percentage * 100.0d)/100.0d);
+            double paid = (double) (principal * percentage/100.0);
+            paid = (double) ((double) Math.round(paid * 100.0d)/100.0d);
+                   
+            DecimalFormat df = new DecimalFormat("#");
+            df.setMaximumFractionDigits(5);
+            fileWrite += df.format(paid);
+            fileWrite += ",";
+            
+            fileWrite += Float.toString(percentage);
+            fileWrite += "\n";
+        }        
+        System.out.println(fileWrite);
+        try (PrintStream out = new PrintStream(new FileOutputStream("TestCsvData.csv"))) {
+            out.print(fileWrite);
+        }
+        /*
         for(int i=1;i<=1000;i++){
             fileWrite += Integer.toString(i);
             fileWrite += ",";
@@ -67,6 +104,8 @@ public class TestCases {
         //System.out.println(fileWrite);
         try (PrintStream out = new PrintStream(new FileOutputStream("TestCsvData.csv"))) {
             out.print(fileWrite);
+
         }
+        */
     }    
 }

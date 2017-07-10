@@ -49,8 +49,8 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li><a href="#" class="nav-color">Home</a></li>
-                        <li><a href="#" class="nav-color">Daily</a></li>
+                        <li><a href="Start.html" class="nav-color">Home</a></li>
+                        <li><a href="options.html" class="nav-color">Options</a></li>
                         <li><a href="#" class="nav-color">Weekly</a></li>
                         <li><a href="#" class="nav-color">Monthly</a></li>
                     </ul>
@@ -85,7 +85,7 @@
                   <input type="text" placeholder="Enter Username" id="username" required style="margin-left:9%;width:75%;">
                   <br><br>
                   <label><b>Password</b></label>
-                  <input type="password" placeholder="Enter Password" id="psw" required required style="margin-left:9%;width:75%;">
+                  <input type="password" placeholder="Enter Password" id="psw" required style="margin-left:9%;width:75%;">
                   <br><br>
                   <label><b>Repeat Password</b></label>
                   <input type="password" placeholder="Repeat Password" id="psw-repeat" required style="width:75%;">
@@ -152,10 +152,27 @@
                           </button>                    
                         </div>
                         <div class="collapse navbar-collapse" id="myNavbar">
-                            <ul class="nav navbar-nav">
-                                <li><a href="#tab1" class="nav-color" data-toggle="tab"><i class="fa fa-line-chart"></i>  Graph</a></li>
-                                <li><a href="#tab2" class="nav-color" data-toggle="tab"><i class="fa fa-code-fork"></i>  Query</a></li>
-                            </ul>
+                            <span style="float:left;">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="#tab1" class="nav-color" data-toggle="tab"><i class="fa fa-line-chart"></i>  Graph</a></li>
+                                    <li><a href="#tab2" class="nav-color" data-toggle="tab"><i class="fa fa-code-fork"></i>  Query</a></li>
+                                </ul>
+                            </span>
+                            <span style="float:right;padding-top:1%;padding-bottom:1%;">
+                                <form method="post" action="javascript:load_graph();">
+                                    <label style="color:white"> Start Date:</label>
+                                    <span style="display:inline-block;float:none;">
+                                        <input type="date" placeholder="e.g. >=2006-06-01" id="start_date" style="margin:1%;">
+                                    </span>
+                                    <label style="color:white"> End Date:</label>
+                                    <span style="display:inline-block;float:none;">
+                                        <input type="date"  placeholder="e.g. <=2013-06-01" id="end_date" style="margin:1%;">
+                                    </span>
+                                    <span style="display:inline-block;float:none;">
+                                        <button type="submit" class="btn btn-success"> Submit</button>
+                                    </span>
+                                </form>
+                            </span>
                         </div>
                     </div>
                 </nav>
@@ -241,16 +258,31 @@
                         console.log(JSON.parse(sessionStorage.getItem('username')));
                         load();
                     }
-                    else{
-                        alert("Wrong Login id or Password");
-                    }
                 }                
                 setTimeout( function() {
                   http.send(myJsonString);
                 }, 1000);
                 $('#login').modal('hide');
             }
+            function load_graph(){
+                var startdate = document.getElementById('start_date').value;
+                var enddate = document.getElementById('end_date').value;
+                var str = "query," + startdate + "," + enddate;
+                var http = new XMLHttpRequest();                
+                var url = 'http://localhost:8080/';
+                http.open('POST', url, true);
+                http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                var myJsonString = JSON.stringify(str);
+                http.onreadystatechange = function() {
+                    if (http.readyState == 4 && http.status == 200) {
+                        console.log(http.responseText);
+                        location.reload();  
+                    }
+                }                
+                setTimeout( function() {
+                  http.send(myJsonString);
+                }, 1000);
+            }
         </script>
-        <script src="/JS/Yearly.js"></script>
     </body>
 </html>
