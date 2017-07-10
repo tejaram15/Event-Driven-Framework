@@ -77,11 +77,15 @@ Data is fetched from dgraph from the web page currently but soon i will change i
 
 ## Instructions:
 
-1. Deploy the web server:- In command prompt go to the folder and run 
+1. Deploy the Dgraph Database:- In Terminal go to the Event Driven Framework folder and run
+
+> dgraph -port 9090
+
+2. Deploy the web server:- In command prompt go to the folder and run 
 
 > node HTTP_SERVER.js
 
-2. Open the Web Browser and open the following URL:-
+3. Open the Web Browser and open the following URL:-
 
 > http://localhost:8080/HTML/Start.html
 
