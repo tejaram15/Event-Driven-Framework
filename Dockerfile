@@ -1,11 +1,11 @@
 # Import nodejs boron version
 FROM node:boron
 # Create a new directory
-RUN mkdir -p /usr/src/Event Driven Framework/
+RUN mkdir -p /usr/src/Event\ Driven\ Framework/
 # Change Working Directory
-WORKDIR /usr/src/Event Driven Framework/
+WORKDIR /usr/src/Event\ Driven\ Framework/
 # Install app dependencies
-COPY package.json /usr/src/Event Driven Framework/
+COPY package.json /usr/src/Event\ Driven\ Framework/
 RUN npm install
 RUN curl https://get.dgraph.io -sSf | bash
 # Copy all the files
