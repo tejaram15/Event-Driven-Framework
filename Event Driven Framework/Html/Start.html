@@ -10,10 +10,19 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://use.fontawesome.com/1da1654c7c.js"></script>
         <script src="http://d3js.org/d3.v3.min.js"></script>
-        <link rel="stylesheet" href="/Css/style.css">
+        <link rel="stylesheet" href="/Css/blue.css" media="all" id="theme_css">
         <script>
             var current = null;
             function load(){
+                var theme = sessionStorage.getItem('theme');
+                if(theme == "Orange Theme"){
+                    document.getElementById('theme_change').innerHTML = "Orange Theme";
+                    document.getElementById('theme_css').href = '/Css/style.css';
+                }
+                else{
+                    document.getElementById('theme_change').innerHTML = "Blue Theme";
+                    document.getElementById('theme_css').href = '/Css/blue.css';
+                }
                 var messagedivid = "message";
                 if(sessionStorage.length != 0){
                     document.getElementById("show_user").innerHTML = JSON.parse(sessionStorage.getItem('username'));
@@ -54,6 +63,25 @@
                         <li><a href="#" class="nav-color">Weekly</a></li>
                         <li><a href="#" class="nav-color">Monthly</a></li>
                     </ul>
+                    <button type="button" class="btn" id="theme_change">Blue Theme</button>
+                    <script>
+                        var theme = document.getElementById('theme_change');
+                        console.log(theme.innerHTML);
+                        theme.onclick = function () {
+                            if(theme.innerHTML == "Blue Theme"){
+                                theme.innerHTML = "Orange Theme";
+                                sessionStorage.clear();
+                                sessionStorage.setItem('theme','Orange Theme');
+                                document.getElementById('theme_css').href = '/Css/blue.css';
+                            }
+                            else{
+                                theme.innerHTML = "Blue Theme";
+                                sessionStorage.clear();
+                                sessionStorage.setItem('theme','Blue Theme');
+                                document.getElementById('theme_css').href = '/Css/style.css';
+                            }
+                        };                                    
+                    </script>
                     <span id="message" style="display:inline-block">
                         <ul class="nav navbar-nav navbar-right">
                           <li><a href="#" data-toggle="modal" data-target="#signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -75,7 +103,7 @@
           <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
-              <div class="modal-header" style="background-color:orange;border-radius:5px;">
+              <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Sign Up</h4>
               </div>
@@ -104,7 +132,7 @@
         <div id="login" class="modal fade" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
-              <div class="modal-header" style="background-color:orange;border-radius:5px;">
+              <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Login</h4>
               </div>
@@ -132,7 +160,7 @@
         <div class="container">
             <!-- Chart area 1 -->
             <div class="row">
-                <div class="col col-md-3" style="position:relative;overflow-x:scroll;text-align:center;color:orange;border-style:solid;padding-top:1%;border-radius:5px;">
+                <div class="col col-md-3 gauge">
                     Percentage Paid
                     <svg id="fillgauge1" viewBox="-10 -5 280 230" style="float:left;"></svg>
                     <script src="/JS/Gauge.js"></script>
@@ -141,7 +169,7 @@
         </div>
         <!--Main Content-->
         <div class="container">
-            <div class="row graph" style="margin-top:2%;border-style:solid;border-color:orange;border-width:4px;border-radius:5px;">
+            <div class="row graph_content">
                 <nav class="navbar navclass">
                     <div class="container-fluid">
                         <div class="navbar-header">
@@ -206,7 +234,7 @@
         <!-- Footer -->
         <div class="footer" style="background-color:#eeeeee;bottom:0px;left:0px;right:0px;margin-bottom:0px;margin-top:1%;">
             <div class="container" style="text-align:center;padding:1%;">
-                <p style="color:orange;font-size:20px;">Powered By @BBSSL</p>
+                <p class="footer_text">Powered By @BBSSL</p>
             </div>
         </div>
         <!-- Footer -->
