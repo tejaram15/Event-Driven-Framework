@@ -53,10 +53,11 @@ var server = http.createServer(function (req, res) {
                             console.log(stdout);
                             var obj = JSON.parse(stdout);
                             if(obj["code"]=="Success")
-                                res.end("Signup Successful");
+                                res.end("ok");
+                            else res.end("notok");
                         });                                        
                     }
-                    else res.end("User Already Exists");
+                    else res.end("existing");
                 });
             }
             else if(result[0]=="login"){
@@ -67,7 +68,7 @@ var server = http.createServer(function (req, res) {
                   // command output is in stdout
                     console.log(stdout);
                     if(stdout!="{}")
-                        res.end("Login Successful");
+                        res.end("match");
                 });                
             }
             else if(result[0]=="query"){
@@ -90,6 +91,20 @@ var server = http.createServer(function (req, res) {
                         });                         
                     }
                 });                
+            }
+            else if(result[0]=="check_conn"){
+                console.log("Checking Database Connection.....");
+                 var check = "curl localhost:9090/query -sS -XPOST -d '" + "{me(func:allofterms(username,\"" + "123" + "\")){username _uid_}" + "}\'";
+                  exec(check, function(error, stdout, stderr) {
+                    if(stderr=="" && error==null){
+                        console.log("Connection Ok...!!");
+                        res.end("ok");
+                    }
+                    else{
+                        console.log("Connection Not Ok...");
+                        res.end("not ok");
+                    }
+                });             
             }
         });        
     }

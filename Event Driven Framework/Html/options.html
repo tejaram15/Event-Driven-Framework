@@ -86,7 +86,7 @@
                     <span class="icon-bar"></span> 
                   </button>                    
                     <a href="#" class="navbar-brand" style="padding:0px;margin-left:0px;margin-right:0px;">
-                        <img src="/Resources/Images/logo%20(1).png" style="height:100%;margin-left:0px;">
+                        <img src="/Resources/Images/logo.png" style="height:100%;margin-left:0px;">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
@@ -104,11 +104,15 @@
                             if(theme.innerHTML == "Blue Theme"){
                                 theme.innerHTML = "Orange Theme";
                                 sessionStorage.setItem('theme','Orange Theme');
+                                document.getElementById('orange_theme').checked = false;
+                                document.getElementById('blue_theme').checked = true;
                                 document.getElementById('theme_css').href = '/Css/blue.css';
                             }
                             else if(theme.innerHTML == "Orange Theme"){
                                 theme.innerHTML = "Blue Theme";
                                 sessionStorage.setItem('theme','Blue Theme');
+                                document.getElementById('orange_theme').checked = true;
+                                document.getElementById('blue_theme').checked = false;
                                 document.getElementById('theme_css').href = '/Css/style.css';
                             }
                         };                                    
@@ -212,11 +216,9 @@
                                   <input type="checkbox" id="query_show">  View Query with graph
                                   <br><br>
                                   Select the type of Graph You want to view  
-                                <select name="cars">
-                                  <option value="volvo">Volvo</option>
-                                  <option value="saab">Saab</option>
-                                  <option value="fiat">Fiat</option>
-                                  <option value="audi">Audi</option>
+                                <select id="graphs">
+                                    <option value="g1"><b>Paid Amount</b> vs <b>Date</b></option>
+                                    <option value="g2"><b>Paid Percentage</b> vs <b>Date</b></option>
                                 </select>                                   
                                   <br><br>
                                   <button type="reset" class="btn btn-default" style="width:20%;">Reset</button>    
@@ -251,13 +253,13 @@
                       <div class="modal-content" style="border-radius:5px;">
                         <div class="modal-header" style="background-color:#428bca;color:white;border-radius:5px;">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          <h4 class="modal-title">Graph Options</h4>
+                          <h4 class="modal-title">Theme Options</h4>
                         </div>
                         <div class="modal-body">
                           <form class="animate" method="post" action="javascript:theme_options();">
-                              <input type="checkbox" id="orange_theme" checked>  Orange Theme
+                              <input type="radio" id="orange_theme" name="theme_group">  Orange Theme
                               <br><br>
-                              <input type="checkbox" id="blue_theme"> Blue Theme
+                              <input type="radio" id="blue_theme" name="theme_group"> Blue Theme
                               <br><br>
                               <button type="reset" class="btn btn-default" style="width:20%;">Reset</button>    
                               <button type="submit" class="btn btn-success" style="width:20%;margin-left:2%;">Submit</button>    
@@ -295,14 +297,14 @@
                                         40%
                                       </div>
                                     </div>                                   
-                                  <input type="checkbox" id="percent_bar" placeholder="Bar"><span style="margin-left:1%;">Include Percentage Bar</span>
+                                  <input type="checkbox" id="percentage_bar" placeholder="Bar" checked><span style="margin-left:1%;">Include Percentage Bar</span>
                                   <br><br>
                                   <div style="clear: both">
                                       <h4 style="float:left;"><span class="label label-success">Database Connected</span></h4>
                                       <h4 style="float:left;margin-left:1%;"><span class="label label-danger">Database Dis-Connected</span></h4>
                                   </div>
                                   <br><br><br>
-                                  <input type="checkbox" id="Connected_option" placeholder="Conn" checked><span style="margin-left:1%;">Show Connected Options</span>
+                                  <input type="checkbox" id="show_connection" placeholder="show_connection" checked><span style="margin-left:1%;">Show Connected Options</span>
                                   <br><br>
                                       <pre style="overflow:auto;padding:0px;"><code style="color:red;">
     {
@@ -354,20 +356,40 @@
                 else if(ele.checked == false){
                     sessionStorage.setItem("view_query","false");
                 }
+                var graph_type = document.getElementById('graphs').value;
+                console.log(graph_type);
+                sessionStorage.setItem('graph_type',graph_type);
                 $('#option1').modal('hide');
             }
             function theme_options(){
-                Boolean orange_checked = document.getElementById('orange_theme').checked;
-                Boolean blue_checked = document.getElementById('blue_theme').checked;
+                var orange_checked = document.getElementById('orange_theme').checked;
+                var blue_checked = document.getElementById('blue_theme').checked;
+                console.log(orange_checked);
                 if(orange_checked == true){
-                    sessionStorage.setItem('theme','Orange Theme');
-                }
-                else if(blue_checked == true){
                     sessionStorage.setItem('theme','Blue Theme');
                 }
+                else if(blue_checked == true){
+                    sessionStorage.setItem('theme','Orange Theme');
+                }
+                $('#option3').modal('hide');
+                location.reload();
             }
-            function save_details(){
-                
+            function developer_options(){
+                var view_percentage_bar = document.getElementById("percentage_bar");
+                if(view_percentage_bar.checked == true){
+                    sessionStorage.setItem("percentage_bar","true");
+                }
+                else if(view_percentage_bar.checked == false){
+                    sessionStorage.setItem("percentage_bar","false");
+                }
+                var show_connected_options = document.getElementById("show_connection");
+                if(show_connected_options.checked == true){
+                    sessionStorage.setItem("show_connection","true");   
+                }
+                else if(show_connected_options.checked == false){
+                    sessionStorage.setItem("show_connection","false");
+                }
+                $('#option4').modal('hide');
             }
         </script>
     </body>

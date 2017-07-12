@@ -14,6 +14,22 @@
         <script>
             var current = null;
             function load(){
+                /*Default Settings*/
+                if(sessionStorage.length==0){
+                    sessionStorage.setItem("show_connection","true");
+                    sessionStorage.setItem("view_query","false");
+                    sessionStorage.setItem("theme","Blue Theme");
+                }
+                /*Developer Options Settings*/
+                var percent_bar = document.getElementById("percentage_bar");
+                if(sessionStorage.getItem("percentage_bar")=="false"){
+                    percent_bar.style.display = 'none';
+                }
+                else percent_bar.style.display = 'inherit';
+                if(sessionStorage.getItem("show_connection")=="true"){
+                    check_show_database_connection();
+                }
+                /*Developer Options Settings*/
                 /*Graph Options Settings*/
                 var ele = document.getElementById("graph_query");
                 if(sessionStorage.getItem('view_query')=="true"){
@@ -37,7 +53,8 @@
                 /*Signup or signin Setting*/                
                 var messagedivid = "message";
                 if(sessionStorage.getItem('username').length != 0){
-                    document.getElementById("show_user").innerHTML = JSON.parse(sessionStorage.getItem('username'));
+                    var name = "\t" + sessionStorage.getItem('username');
+                    document.getElementById("show_user").innerHTML = JSON.parse(name);
                     var div = document.getElementById(messagedivid),id = messagedivid.replace("message", "response");
                     if(current == null){
                         div.style.display = 'none';
@@ -66,7 +83,7 @@
                     <span class="icon-bar"></span> 
                   </button>                    
                     <a href="#" class="navbar-brand" style="padding:0px;margin-left:0px;margin-right:0px;">
-                        <img src="/Resources/Images/logo%20(1).png" style="height:100%;margin-left:0px;">
+                        <img src="/Resources/Images/logo.png" style="height:100%;margin-left:0px;">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
@@ -92,6 +109,12 @@
                             }
                         };                                    
                     </script>
+                    <span id="label-true" style="display:none;">
+                        <span class="label label-success">Database Connected</span>
+                    </span>                    
+                    <span id="label-false" style="display:none;">
+                        <span class="label label-danger">Database Dis-Connected</span>
+                    </span>
                     <span id="message" style="display:inline-block;float:right;">
                         <ul class="nav navbar-nav navbar-right">
                           <li><a href="#" data-toggle="modal" data-target="#signup" class="nocol"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -100,7 +123,7 @@
                     </span>
                     <span id="response" style="display:none;float:right;">
                         <ul class="nav navbar-nav navbar-right">
-                          <li><a href="#" class="nocol"><span class="glyphicon glyphicon-user"></span><span id="show_user"></span></a></li>
+                          <li><a href="#" class="nocol"><span class="glyphicon glyphicon-user"></span><span id="show_user"> </span></a></li>
                           <li><a href="#" onclick="logout()" class="nocol"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                         </ul>
                     </span>            
@@ -167,7 +190,7 @@
         </div>        
         <!-- Login Modal -->
         <!--Main Content-->
-        <div class="container">
+        <div class="container" id="percentage_bar">
             <!-- Chart area 1 -->
             <div class="row">
                 <div class="col col-md-3 gauge">
@@ -217,7 +240,14 @@
                 <!-- tab content -->
                 <div class="tab-content">
                     <div class="tab-pane active graph" id="tab1" style="position:relative;overflow-x:scroll;">
-                        <script src="/JS/Complete.js"></script>
+                        <script type="text/javascript">
+                            var script = document.createElement('script');
+                            if(sessionStorage.getItem('graph_type') == 'g2'){
+                                script.src = "/JS/Yearly.js";
+                            }
+                            else script.src = "/JS/Complete.js";
+                            document.body.appendChild(script);
+                        </script>
                     </div>
                     <div class="tab-pane" id="tab2" style="background-color: #eee !important;min-height:100% !important;">
                         <pre>
@@ -277,7 +307,6 @@
                     }, 1000);
                 }
                 $('#signup').modal('hide');
-                alert("Successfully Signed up");
             }
             function loginAndRedirect(){
                 var username = document.getElementById('username1').value;
@@ -291,10 +320,13 @@
                 http.onreadystatechange = function() {
                     if (http.readyState == 4 && http.status == 200) {
                         console.log(http.responseText);
-                        var username = document.getElementById('username1').value;
-                        sessionStorage.setItem('username',JSON.stringify(username));
-                        console.log(JSON.parse(sessionStorage.getItem('username')));
-                        load();
+                        if(http.responseText=="match"){
+                            var username = document.getElementById('username1').value;
+                            sessionStorage.setItem('username',JSON.stringify(username));
+                            console.log(JSON.parse(sessionStorage.getItem('username')));
+                            location.reload();
+                        }
+                        else alert("Wrong Username Or Password");
                     }
                 }                
                 setTimeout( function() {
@@ -320,6 +352,32 @@
                 setTimeout( function() {
                   http.send(myJsonString);
                 }, 1000);
+            }
+            function check_show_database_connection(){
+                var str = "check_conn";
+                var http = new XMLHttpRequest();                
+                var url = 'http://localhost:8080/';
+                http.open('POST', url, true);
+                http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                var myJsonString = JSON.stringify(str);
+                http.onreadystatechange = function() {
+                    if (http.readyState == 4 && http.status == 200) {
+                        console.log(http.responseText);
+                        if(http.responseText == "ok"){
+                            //display it
+                            document.getElementById("label-true").style.display = 'inline';
+                            document.getElementById("label-false").style.display = 'none';
+                        }
+                        else{
+                            //hide it
+                            document.getElementById("label-true").style.display = 'none';
+                            document.getElementById("label-false").style.display = 'inline';                            
+                        }
+                    }
+                }                
+                setTimeout( function() {
+                  http.send(myJsonString);
+                }, 1000);                
             }
         </script>
     </body>
