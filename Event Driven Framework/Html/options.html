@@ -14,15 +14,33 @@
         <script>
             var current = null;
             function load(){
+                /*Check All Required Check Boxes*/
+                var view_query_ele = document.getElementById("query_show");
+                if(sessionStorage.getItem("view_query")=="true"){
+                    view_query_ele.checked = true;
+                }
+                else if(sessionStorage.getItem("view_query")=="false"){
+                    view_query_ele.checked = false;
+                }
+                    
+                /*Theme Settings*/
                 var theme = sessionStorage.getItem('theme');
                 if(theme == "Orange Theme"){
-                    document.getElementById('theme_css').href = '/Css/style.css';
-                }
-                else{
+                    document.getElementById('theme_change').innerHTML = "Orange Theme";
                     document.getElementById('theme_css').href = '/Css/blue.css';
+                    document.getElementById('blue_theme').checked = true;
+                    document.getElementById('orange_theme').checked = false;
                 }
+                else if(theme == "Blue Theme"){
+                    document.getElementById('theme_change').innerHTML = "Blue Theme";
+                    document.getElementById('theme_css').href = '/Css/style.css';
+                    document.getElementById('blue_theme').checked = false;
+                    document.getElementById('orange_theme').checked = true;
+                }
+                /*Theme Settings*/
+                /*Signup or signin Setting*/
                 var messagedivid = "message";
-                if(sessionStorage.length != 0){
+                if(sessionStorage.getItem('username').length != 0){
                     document.getElementById("show_user").innerHTML = JSON.parse(sessionStorage.getItem('username'));
                     var div = document.getElementById(messagedivid),id = messagedivid.replace("message", "response");
                     if(current == null){
@@ -36,6 +54,7 @@
                     var div = document.getElementById(messagedivid);
                     div.style.display = 'inline';
                 }
+                /*Signup or signin Setting*/
             }                        
         </script>
         <style>
@@ -74,10 +93,10 @@
                     <ul class="nav navbar-nav">
                         <li><a href="Start.html" class="nav-color">Home</a></li>
                         <li><a href="options.html" class="nav-color">Options</a></li>
-                        <li><a href="#" class="nav-color">Weekly</a></li>
-                        <li><a href="#" class="nav-color">Monthly</a></li>
                     </ul>
-                    <button type="button" class="btn" id="theme_change">Blue Theme</button>
+                    <span>
+                        <button type="button" class="btn" id="theme_change">Orange Theme</button>
+                    </span>
                     <script>
                         var theme = document.getElementById('theme_change');
                         console.log(theme.innerHTML);
@@ -87,20 +106,20 @@
                                 sessionStorage.setItem('theme','Orange Theme');
                                 document.getElementById('theme_css').href = '/Css/blue.css';
                             }
-                            else{
+                            else if(theme.innerHTML == "Orange Theme"){
                                 theme.innerHTML = "Blue Theme";
                                 sessionStorage.setItem('theme','Blue Theme');
                                 document.getElementById('theme_css').href = '/Css/style.css';
                             }
                         };                                    
                     </script>                    
-                    <span id="message" style="display:inline-block">
+                    <span id="message" style="display:inline-block;float:right;">
                         <ul class="nav navbar-nav navbar-right">
                           <li><a href="#" data-toggle="modal" data-target="#signup" class="nocol"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                           <li><a href="#" data-toggle="modal" data-target="#login" class="nocol"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                         </ul>
                     </span>
-                    <span id="response" style="display:none;">
+                    <span id="response" style="display:none;float:right;">
                         <ul class="nav navbar-nav navbar-right">
                           <li><a href="#" class="nocol"><span class="glyphicon glyphicon-user"></span><span id="show_user"></span></a></li>
                           <li><a href="#" onclick="logout()" class="nocol"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -324,8 +343,28 @@
         <!-- Footer -->
         <script type="text/javascript">
             function logout(){
-                sessionStorage.clear();
+                sessionStorage.removeItem("username");
                 location.reload();  
+            }
+            function graph_options(){
+                var ele = document.getElementById("query_show");
+                if(ele.checked == true){
+                    sessionStorage.setItem("view_query","true");
+                }
+                else if(ele.checked == false){
+                    sessionStorage.setItem("view_query","false");
+                }
+                $('#option1').modal('hide');
+            }
+            function theme_options(){
+                Boolean orange_checked = document.getElementById('orange_theme').checked;
+                Boolean blue_checked = document.getElementById('blue_theme').checked;
+                if(orange_checked == true){
+                    sessionStorage.setItem('theme','Orange Theme');
+                }
+                else if(blue_checked == true){
+                    sessionStorage.setItem('theme','Blue Theme');
+                }
             }
             function save_details(){
                 

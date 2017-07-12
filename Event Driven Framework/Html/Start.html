@@ -14,17 +14,29 @@
         <script>
             var current = null;
             function load(){
+                /*Graph Options Settings*/
+                var ele = document.getElementById("graph_query");
+                if(sessionStorage.getItem('view_query')=="true"){
+                    ele.style.display = 'inherit';
+                }
+                else if(sessionStorage.getItem('view_query')=="false"){
+                    ele.style.display = 'none';
+                }
+                /*Graph Options Settings*/
+                /*Theme Settings*/                
                 var theme = sessionStorage.getItem('theme');
                 if(theme == "Orange Theme"){
                     document.getElementById('theme_change').innerHTML = "Orange Theme";
-                    document.getElementById('theme_css').href = '/Css/style.css';
-                }
-                else{
-                    document.getElementById('theme_change').innerHTML = "Blue Theme";
                     document.getElementById('theme_css').href = '/Css/blue.css';
                 }
+                else if(theme == "Blue Theme"){
+                    document.getElementById('theme_change').innerHTML = "Blue Theme";
+                    document.getElementById('theme_css').href = '/Css/style.css';
+                }
+                /*Theme Settings*/
+                /*Signup or signin Setting*/                
                 var messagedivid = "message";
-                if(sessionStorage.length != 0){
+                if(sessionStorage.getItem('username').length != 0){
                     document.getElementById("show_user").innerHTML = JSON.parse(sessionStorage.getItem('username'));
                     var div = document.getElementById(messagedivid),id = messagedivid.replace("message", "response");
                     if(current == null){
@@ -38,6 +50,7 @@
                     var div = document.getElementById(messagedivid);
                     div.style.display = 'inline';
                 }
+                /*Signup or signin Setting*/                
             }                        
         </script>
         <script src="/JS/liquidFillGauge.js" language="JavaScript"></script>
@@ -60,33 +73,32 @@
                     <ul class="nav navbar-nav">
                         <li><a href="Start.html" class="nav-color">Home</a></li>
                         <li><a href="options.html" class="nav-color">Options</a></li>
-                        <li><a href="#" class="nav-color">Weekly</a></li>
-                        <li><a href="#" class="nav-color">Monthly</a></li>
                     </ul>
-                    <button type="button" class="btn" id="theme_change">Blue Theme</button>
+                    <span>
+                        <button class="btn" id="theme_change">Orange Theme</button>
+                    </span>
                     <script>
                         var theme = document.getElementById('theme_change');
-                        console.log(theme.innerHTML);
                         theme.onclick = function () {
                             if(theme.innerHTML == "Blue Theme"){
                                 theme.innerHTML = "Orange Theme";
                                 sessionStorage.setItem('theme','Orange Theme');
                                 document.getElementById('theme_css').href = '/Css/blue.css';
                             }
-                            else{
+                            else if(theme.innerHTML == "Orange Theme"){
                                 theme.innerHTML = "Blue Theme";
                                 sessionStorage.setItem('theme','Blue Theme');
                                 document.getElementById('theme_css').href = '/Css/style.css';
                             }
                         };                                    
                     </script>
-                    <span id="message" style="display:inline-block">
+                    <span id="message" style="display:inline-block;float:right;">
                         <ul class="nav navbar-nav navbar-right">
                           <li><a href="#" data-toggle="modal" data-target="#signup" class="nocol"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                           <li><a href="#" data-toggle="modal" data-target="#login" class="nocol"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                         </ul>
                     </span>
-                    <span id="response" style="display:none;">
+                    <span id="response" style="display:none;float:right;">
                         <ul class="nav navbar-nav navbar-right">
                           <li><a href="#" class="nocol"><span class="glyphicon glyphicon-user"></span><span id="show_user"></span></a></li>
                           <li><a href="#" onclick="logout()" class="nocol"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -161,7 +173,7 @@
                 <div class="col col-md-3 gauge">
                     Percentage Paid
                     <svg id="fillgauge1" viewBox="-10 -5 280 230" style="float:left;"></svg>
-                    <script src="/JS/Gauge.js"></script>
+                    <script src="/JS/Gauge.js" async></script>
                 </div>                
             </div>
         </div>
@@ -181,7 +193,7 @@
                             <span style="float:left;">
                                 <ul class="nav navbar-nav">
                                     <li><a href="#tab1" class="nav-color" data-toggle="tab"><i class="fa fa-line-chart"></i>  Graph</a></li>
-                                    <li><a href="#tab2" class="nav-color" data-toggle="tab"><i class="fa fa-code-fork"></i>  Query</a></li>
+                                    <li><a href="#tab2" class="nav-color" data-toggle="tab" style="display:none;" id="graph_query"><i class="fa fa-code-fork"></i>  Query</a></li>
                                 </ul>
                             </span>
                             <span style="float:right;padding-top:1%;padding-bottom:1%;">
@@ -238,7 +250,7 @@
         <!-- Footer -->
         <script type="text/javascript">
             function logout(){
-                sessionStorage.clear();
+                sessionStorage.removeItem("username");
                 location.reload();  
             }
             function signupAndRedirect(){
