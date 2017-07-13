@@ -1,0 +1,14 @@
+mutation{
+	schema{
+		start_date: date @index(date) .
+		paid: float @index(float) .
+	}
+	set{
+		_:main <name> "you" .
+		_:main <start_date> "2006-02-01"^^<xs:date> .
+		_:main <paid> "2563.023"^^<xs:float> .
+	}
+	schema{
+		name: string @index(term) .
+	}
+}

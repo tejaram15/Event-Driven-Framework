@@ -76,11 +76,11 @@ var server = http.createServer(function (req, res) {
                 var end_date = result[2];
                 console.log(start_date);
                 console.log(end_date);
-                var query = "curl localhost:9090/query -sS -XPOST -d '{ me(id:0x53ca093143397ddd){ associates(orderasc:start_date) @filter(ge(start_date,\""+start_date+"\") and le(start_date,\""+end_date+"\")){start_date percent_paid paid } } }'";
+                var query = "curl localhost:9090/query -sS -XPOST -d '{ me(func:allofterms(name,\"Vijaya Bank\")){ associates(orderasc:start_date) @filter(ge(start_date,\""+start_date+"\") and le(start_date,\""+end_date+"\")){start_date percent_paid paid } } }'";
                 //console.log(query);
                 exec(query, function(error, stdout, stderr) {
                   // command output is in stdout
-                    //console.log(stdout);
+                    console.log(stdout);
                     if(stdout!="{}"){
                         res.end("Query Successful!!");
                         fs.writeFile("Resources/Data/send.json", stdout, function(err) {

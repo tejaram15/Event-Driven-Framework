@@ -1,7 +1,6 @@
-curl localhost:8080/query -XPOST -d $'
 mutation{
 	set{
-		_:main_branch <name> "Vijaya Bank" .
+		_:main_branch <name> "Admin Branch" .
 		_:1 <start_date> "2006-06-01"^^<xs:date> .
 		_:1 <end_date> "2013-11-24"^^<xs:date> .
 		_:1 <no_of_days> "2733"^^<xs:int> .
@@ -8003,4 +8002,4 @@ mutation{
 		_:1000 <percent_paid> "69.67"^^<xs:float> .
 		_:main_branch <associates> _:1000 .
 	}
-}'
+}
