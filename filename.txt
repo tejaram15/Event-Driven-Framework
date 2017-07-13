@@ -8002,4 +8002,11 @@ mutation{
 		_:1000 <percent_paid> "69.67"^^<xs:float> .
 		_:main_branch <associates> _:1000 .
 	}
+<<<<<<< HEAD
+=======
+	schema{
+		name: string @index(term) .
+		start_date: date @index(date) .
+	}
+>>>>>>> 7c2faee4ca1cd2eb51a98153f52de529849db8c0
 }
